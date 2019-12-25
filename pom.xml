@@ -19,8 +19,8 @@
     <modules>
         <module>mypaascloud-eureka</module>
         <module>mypaascloud-discovery</module>
+        <module>mypaascloud-gateway</module>
     </modules>
-
 
     <properties>
         <java.version>1.8</java.version>

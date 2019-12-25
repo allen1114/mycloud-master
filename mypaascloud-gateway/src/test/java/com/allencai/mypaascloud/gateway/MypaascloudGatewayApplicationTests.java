@@ -1,4 +1,4 @@
-package com.allencai.mypaascloud.discovery;
+package com.allencai.mypaascloud.gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MypaascloudDiscoveryApplicationTests {
+public class MypaascloudGatewayApplicationTests {
 
     @Test
     public void contextLoads() {

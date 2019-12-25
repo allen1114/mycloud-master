@@ -1,12 +1,5 @@
 spring:
   cloud:
-    inetutils:
-      ignored-interfaces:
-        - docker0
-        - veth.*
-        - VM.*
-      preferred-networks:
-        - 192.168
     config:
       server:
         git:
@@ -15,9 +8,11 @@ spring:
           password: Aa123456
           default-label: master
           strict-host-key-checking: false
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://root:root@192.168.1.88:8761/eureka/
+      defaultZone: http://root:root@localhost:8761/eureka/

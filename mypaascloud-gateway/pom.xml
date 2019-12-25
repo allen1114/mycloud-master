@@ -8,15 +8,16 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
-    <groupId>com.allencai.mypaascloud.eureka</groupId>
-    <artifactId>mypaascloud-eureka</artifactId>
-    <name>mypaascloud-eureka</name>
-    <description>mypaascloud-eureka</description>
+    <groupId>com.allencai.mypaascloud.gateway</groupId>
+    <artifactId>mypaascloud-gateway</artifactId>
+    <name>mypaascloud-gateway</name>
+    <description>mypaascloud-gateway</description>
 
     <dependencies>
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -24,7 +25,13 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
