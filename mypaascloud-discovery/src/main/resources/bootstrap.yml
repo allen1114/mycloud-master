@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - docker0
+        - veth.*
+        - VM.*
+      preferred-networks:
+        - 192.168
+    config:
+      server:
+        git:
+          uri: ssh://git@gitlab.docker.hunter.com:19022/mypaascloud/mypaascloud-conf-repo.git
+          username: allen
+          password: Aa123456
+          default-label: master
+          strict-host-key-checking: false
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://root:root@192.168.1.88:8761/eureka/
