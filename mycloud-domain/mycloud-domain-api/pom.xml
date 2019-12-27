@@ -3,19 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.allencai.mycloud</groupId>
-        <artifactId>mycloud-master</artifactId>
+        <groupId>com.allencai.mycloud.domain</groupId>
+        <artifactId>mycloud-domain</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.allencai.mycloud.domain</groupId>
-    <artifactId>mycloud-domain</artifactId>
-    <packaging>pom</packaging>
 
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mycloud-domain-api</artifactId>
+    <packaging>pom</packaging>
     <modules>
-        <module>mycloud-domain-api</module>
-        <module>mycloud-domain-provider</module>
+        <module>mycloud-tmp1-api</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
