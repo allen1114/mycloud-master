@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: @pom.artifactId@
+  cloud:
+    config:
+      server:
+        git:
+          uri: ssh://git@gitlab.docker.hunter.com:19022/mycloud/mycloud-conf-repo.git
+          username: allen
+          password: Aa123456
+          strict-host-key-checking: false
+          default-label: master
+          search-paths: /src/main/resources
+  security:
+    user:
+      name: root
+      password: root
+      roles: root
+  boot:
+    admin:
+      client:
+        username: root
+        password: root
+        instance:
+          metadata:
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

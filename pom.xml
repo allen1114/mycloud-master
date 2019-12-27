@@ -4,22 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.8.RELEASE</version>
-        <relativePath/>
-    </parent>
-
-    <groupId>com.allencai.mypaascloud</groupId>
-    <artifactId>mypaascloud-master</artifactId>
+    <groupId>com.allencai.mycloud</groupId>
+    <artifactId>mycloud-master</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>mypaascloud-eureka</module>
-        <module>mypaascloud-discovery</module>
-        <module>mypaascloud-gateway</module>
+        <module>mycloud-common</module>
+        <module>mycloud-infrastructure</module>
+        <module>mycloud-domain</module>
     </modules>
 
     <properties>
@@ -30,17 +23,31 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <resource.delimiter>@</resource.delimiter>
 
         <docker.maven.version>0.4.13</docker.maven.version>
-        <docker.host>http://docker.hunter.com</docker.host>
+        <docker.host>${env.DOCKER_HOST}</docker.host>
+
+        <spring.boot.version>2.0.8.RELEASE</spring.boot.version>
+        <spring.boot.admin.version>2.0.5</spring.boot.admin.version>
+        <spring.platform.version>Cairo-SR7</spring.platform.version>
+        <spring.cloud.version>Finchley.SR4</spring.cloud.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
-                <version>Cairo-SR7</version>
+                <version>${spring.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -48,10 +55,23 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.SR4</version>
+                <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -79,5 +99,11 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>
