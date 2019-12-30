@@ -28,21 +28,14 @@
         <docker.maven.version>0.4.13</docker.maven.version>
         <docker.host>${env.DOCKER_HOST}</docker.host>
 
-        <spring.boot.version>2.0.8.RELEASE</spring.boot.version>
-        <spring.boot.admin.version>2.0.5</spring.boot.admin.version>
         <spring.platform.version>Cairo-SR7</spring.platform.version>
-        <spring.cloud.version>Finchley.SR4</spring.cloud.version>
+        <spring.cloud.version>Finchley.SR3</spring.cloud.version>
+        <spring.boot.admin.version>2.0.5</spring.boot.admin.version>
+        <zipkin.version>2.11.7</zipkin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
             <dependency>
                 <groupId>io.spring.platform</groupId>
@@ -70,6 +63,24 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
                 <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-collector-rabbitmq</artifactId>
+                <version>${zipkin.version}</version>
             </dependency>
 
         </dependencies>

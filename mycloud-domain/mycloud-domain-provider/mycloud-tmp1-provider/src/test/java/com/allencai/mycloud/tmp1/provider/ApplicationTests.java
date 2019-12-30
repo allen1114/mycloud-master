@@ -1,4 +1,4 @@
-package com.allencai.mycloud.domain.tmp1.provider;
+package com.allencai.mycloud.tmp1.provider;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

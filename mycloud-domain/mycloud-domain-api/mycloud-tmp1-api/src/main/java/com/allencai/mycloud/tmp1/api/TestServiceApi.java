@@ -1,4 +1,4 @@
-package com.allencai.mycloud.domain.tmp1.api;
+package com.allencai.mycloud.tmp1.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
