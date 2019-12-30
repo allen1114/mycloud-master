@@ -1,0 +1,50 @@
+version: '2'
+services:
+  mycloud-mysql:
+    image:  mysql:5.7
+    ports:
+      - "3309:3306"
+    restart: always
+    volumes:
+      - ./mysql/mysql.conf.d:/etc/mysql/mysql.conf.d
+      - ./mysql/datadir:/var/lib/mysql
+    container_name: mycloud-mysql
+    hostname: mycloud-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  mycloud-redis:
+    image:  redis:6.0-rc
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - ./redis/data:/data
+    container_name: mycloud-redis
+    hostname: mycloud-redis
+
+  mycloud-rabbitmq:
+    image:  rabbitmq:3.8.2-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq
+    container_name: mycloud-rabbitmq
+    hostname: mycloud-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  mycloud-zk:
+    image: zookeeper:3.5
+    restart: always
+    container_name: mycloud-zk
+    hostname: mycloud-zk
+    volumes:
+      - ./zk/data:/data
+      - ./zk/datalog:/datalog
+      - ./zk/logs:/logs
+    ports:
+      - 2181:2181
