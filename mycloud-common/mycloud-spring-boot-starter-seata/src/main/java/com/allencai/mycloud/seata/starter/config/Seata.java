@@ -13,16 +13,13 @@ import java.util.Map;
 @Data
 public class Seata {
 
-
-    private String applicationId;
-    private String txServiceGroup;
+    private SeataServer server;
+    private SeataClient client;
     private SeataRegistry registry;
     private SeataConfig config;
     private SeataTransport transport;
-    private SeataServer server;
     private SeataStore store;
     private SeataMetrics metrics;
-    private SeataClient client;
 
     /**
      * #transaction service group mapping
@@ -34,7 +31,7 @@ public class Seata {
      * #disable seata
      * disableGlobalTransaction = false
      * <p>
-     * 因为一个傻屌莫名其妙写default.grouplist这种格式，只能用个map解决
+     * 因为源码莫名其妙用"service."+clusterName+".grouplist"这种格式，只能用个map解决
      */
     private Map<String, String> service;
 

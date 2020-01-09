@@ -1,5 +1,6 @@
 package com.allencai.mycloud.seata.starter;
 
+import com.allencai.mycloud.seata.starter.config.SeataServer;
 import io.seata.common.XID;
 import io.seata.common.thread.NamedThreadFactory;
 import io.seata.common.util.NetUtil;
@@ -18,33 +19,31 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class SeataInitiator implements SmartLifecycle {
+public class SeataServerInitiator implements SmartLifecycle {
 
     private boolean running;
-    private SeataInitiatorParameter parameter;
+    private SeataServer seataServer;
 
-    public SeataInitiator(SeataInitiatorParameter parameter) {
-        this.parameter = parameter;
+    public SeataServerInitiator(SeataServer seataServer) {
+        this.seataServer = seataServer;
     }
 
-    private static final int MIN_SERVER_POOL_SIZE = 100;
-    private static final int MAX_SERVER_POOL_SIZE = 500;
-    private static final int MAX_TASK_QUEUE_SIZE = 20000;
-    private static final int KEEP_ALIVE_TIME = 500;
-
-
-    private static final ThreadPoolExecutor WORKING_THREADS =
-            new ThreadPoolExecutor(MIN_SERVER_POOL_SIZE, MAX_SERVER_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
-                    new LinkedBlockingQueue<>(MAX_TASK_QUEUE_SIZE), new NamedThreadFactory("ServerHandlerThread", MAX_SERVER_POOL_SIZE),
-                    new ThreadPoolExecutor.CallerRunsPolicy());
-
+    @Override
     public void start() {
+        new Thread(this::doStart).start();
+    }
 
+    private void doStart() {
         running = true;
         MetricsManager.get().init();
-        RpcServer rpcServer = new RpcServer(WORKING_THREADS);
-        rpcServer.setListenPort(parameter.getPort());
-        UUIDGenerator.init(parameter.getServerNode());
+
+        ThreadPoolExecutor messageExecutor = new ThreadPoolExecutor(seataServer.getMinServerPoolSize(), seataServer.getMaxServerPoolSize(),
+                seataServer.getKeepAliveTime(), TimeUnit.SECONDS, new LinkedBlockingQueue<>(seataServer.getMaxTaskQueueSize()),
+                new NamedThreadFactory("ServerHandlerThread", seataServer.getMaxServerPoolSize()),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+        RpcServer rpcServer = new RpcServer(messageExecutor);
+        rpcServer.setListenPort(seataServer.getPort());
+        UUIDGenerator.init(seataServer.getNode());
         try {
             SessionHolder.init("");
         } catch (IOException e) {
@@ -59,8 +58,8 @@ public class SeataInitiator implements SmartLifecycle {
         ShutdownHook.getInstance().addDisposable(coordinator);
 
         //127.0.0.1 and 0.0.0.0 are not valid here.
-        if (NetUtil.isValidIp(parameter.getHost(), false)) {
-            XID.setIpAddress(parameter.getHost());
+        if (NetUtil.isValidIp(seataServer.getHost(), false)) {
+            XID.setIpAddress(seataServer.getHost());
         } else {
             XID.setIpAddress(NetUtil.getLocalIp());
         }
