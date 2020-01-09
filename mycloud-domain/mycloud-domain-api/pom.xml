@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>mycloud-tmp1-api</module>
+        <module>mycloud-tmp2-api</module>
+        <module>mycloud-tmp3-api</module>
     </modules>
 
     <dependencies>

@@ -8,17 +8,42 @@ spring:
     config:
       server:
         git:
-          uri: ssh://git@gitlab.docker.hunter.com:19022/mycloud/mycloud-conf-repo.git
-          username: allen
-          password: Aa123456
+          uri: git@github.com:allen1114/mycloud-conf-repo.git
           strict-host-key-checking: false
           default-label: master
           search-paths: /src/main/resources
+          private-key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEowIBAAKCAQEA526hmVOJU2+Q2XNpHHG1SiXR91YkYLCwulE9eQRS4VDOvsfN
+            LC4GKdF/Z158vXd/U3qdkjKbx2cki+R8Hk0+Ty2s6aaqVdhjOZ2wkNYtU4Quxpjo
+            K3J1vTKfOGpT1S3yVlV1TQi/kFJD5Jiv9Y3PT77nOrPg6SpI4g/xONLPgFtaxMQ9
+            FTxWxr6Y6jxNKlxrre+pbf8R2j+VZ/1h1jqpyg1gkw/M1UHCKwtQrmoxNrk4mjU0
+            sif9sIcAhk8C0GIhOqMo02Emoymu+bkzZiVBzTv1TaPXcHuxb5MjvpWgTPO405At
+            411CaSoLVT0ZUGTSPaNepnDrJjCBtoP0F+FP0wIDAQABAoIBAEU3qGtkObFTr93p
+            j6lrNM59a0PvZqfokKLZA2q7aVJsSblzpqCtDzjYqKMw9lvwbot4I8KDEmZcKekR
+            KDIj5hvmTE4Bg/Zy5pJn4FQhSqMs6JSLTP0Zma9Bga9s1a/vswgxPQkSMcEnaZjo
+            NdBaXoO6VAwRmpYCCJRcMkhNfLQljO3t+unfJIj1XjZq/NER29ydYJGvfvCUz+An
+            6Z/zbyUFRbB+QYW1p4EfQXADYtFAs5Pgh9PFj4sdnolcwrscq9qxxF4N2k0hCxzE
+            BnI6/I5og4JgQ6J3mQapj5MzZjpJlXxyjrVNra1Te1f2gvu3/ItE7/mAV1cLdJpX
+            +H5V+fkCgYEA9u6TZpGFCqkHkMRuJM1ho2SHi3MdGHWfkPMPc80vTYyVV0RWltiO
+            BUmH72J0lWfXLwubblR8mHflSSl6n6Gv/gWbzE9riDI460AX6cha7RpeQVDpWTVd
+            sltiF/UaE/t7uE7mbTmXNxfSQqxfpuwn6p5keEjMjM/T+VMhGhJ0ApUCgYEA7+5X
+            RvfFeczzImBGWdX6E/dsJoH682xi41Xp0ZCqGNrRKlc6A4+NfmOZeKHmcpFPB6fb
+            v2M6bjYLKJ+/gJwImU8aQluFZeBKUVEu1crAkHjCOYhqA4fORLAxOc1wtx8szWK+
+            h6fZQaz8nMU1VQCWFC5sHMHdWpIkbeC/N9FwlscCgYAg7z8frgcFnffRWjGqnO4J
+            4e2mLstRqNaIebK06kgF2ttMUWQPKIEAuYb06bfM+ZWcw7qOY5xepZciQ/MD+YfE
+            pLDb9jfMaY5n6huGZd+iwiKSKZ2F9XUyxbd2pI0+3wroUTWwmb7ObVHw7JaxZ8wH
+            Iesak/McUNff6DOBC7cHZQKBgCYeS6duveT39rjDauni4PRDHt+PTvtVgPB1Ocyd
+            myiPuyNq8ECYkfY+hKdxsVcKVu/0bykc7q+LzoIJvzcDkyooMxfPyoXA+I2qxDIb
+            IDTTuqfBUHZ3IQIwq+FvDjVJsqh+w55xwEZ64TdW7X4vtahHJ835zt0Q0tDSIA8S
+            Kz0JAoGBAMto9wsrK6cbXii3ftTHp8/6Mu4KfslVVczXxVo1JyxOvpqSUyNJDYLP
+            RBbkKHysAgEK8BdpnuhxwIqvQ/04KR/1HWxeECSQOLSFrFlrm0BxFs5nkoHy4NW+
+            bFrBfkRvVfylw6fKiLYZt7DGksn27OhITqirdlqzySZg43YFKRw3
+            -----END RSA PRIVATE KEY-----
   security:
     user:
       name: root
       password: root
-      roles: root
   boot:
     admin:
       client:

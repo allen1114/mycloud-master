@@ -8,16 +8,36 @@ spring:
     user:
       name: root
       password: root
-      roles: root
+  boot:
+    admin:
+      client:
+        username: root
+        password: root
+        instance:
+          metadata:
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
 
 eureka:
   client:
     fetch-registry: false
-    register-with-eureka: false
+#    register-with-eureka: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-  server:
-    enable-self-preservation: false
+      defaultZone: http://root:root@localhost:${server.port}/eureka
+#  server:
+#    enable-self-preservation: false
   instance:
-    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
     prefer-ip-address: true
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

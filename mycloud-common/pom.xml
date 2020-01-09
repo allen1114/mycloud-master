@@ -11,5 +11,8 @@
     <groupId>com.allencai.mycloud.common</groupId>
     <artifactId>mycloud-common</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>mycloud-spring-boot-starter-seata</module>
+    </modules>
 
 </project>

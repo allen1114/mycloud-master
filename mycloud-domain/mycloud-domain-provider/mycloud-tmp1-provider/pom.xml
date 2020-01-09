@@ -11,12 +11,5 @@
 
     <artifactId>mycloud-tmp1-provider</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.allencai.mycloud.domain</groupId>
-            <artifactId>mycloud-tmp1-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
 
 </project>

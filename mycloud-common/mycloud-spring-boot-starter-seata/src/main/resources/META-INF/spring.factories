@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.allencai.mycloud.seata.starter.SeataInitiatorAutoConfiguration, \
+  com.allencai.mycloud.seata.starter.SeataClientAutoConfiguration

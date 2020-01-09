@@ -7,11 +7,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.allencai.mycloud.tmp1.api"})
+@EnableFeignClients(basePackages = {"com.allencai.mycloud.tmp3.api"})
 public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
 }

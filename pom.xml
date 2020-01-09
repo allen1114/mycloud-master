@@ -25,13 +25,17 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <resource.delimiter>@</resource.delimiter>
 
-        <docker.maven.version>0.4.13</docker.maven.version>
+        <docker-maven.version>0.4.13</docker-maven.version>
         <docker.host>${env.DOCKER_HOST}</docker.host>
 
-        <spring.platform.version>Cairo-SR7</spring.platform.version>
-        <spring.cloud.version>Finchley.SR3</spring.cloud.version>
-        <spring.boot.admin.version>2.0.5</spring.boot.admin.version>
+        <platform-bom.version>Cairo-SR7</platform-bom.version>
+        <spring-cloud.version>Finchley.SR4</spring-cloud.version>
+        <spring-boot-admin.version>2.0.6</spring-boot-admin.version>
         <zipkin.version>2.11.7</zipkin.version>
+        <druid.version>1.1.21</druid.version>
+        <mybatis-plus.version>3.0.4</mybatis-plus.version>
+        <seata.version>1.0.0</seata.version>
+        <spring-cloud-alibaba.version>2.0.0.RELEASE</spring-cloud-alibaba.version>
     </properties>
 
     <dependencyManagement>
@@ -40,7 +44,7 @@
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
-                <version>${spring.platform.version}</version>
+                <version>${platform-bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -48,7 +52,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -56,13 +60,13 @@
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring.boot.admin.version}</version>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
-                <version>${spring.boot.admin.version}</version>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
 
             <dependency>
@@ -83,8 +87,79 @@
                 <version>${zipkin.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-seata</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-all</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-server</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+
+
+            <!-- ################################# domain api start ############################################# -->
+
+            <dependency>
+                <groupId>com.allencai.mycloud.common</groupId>
+                <artifactId>mycloud-spring-boot-starter-seata</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.allencai.mycloud.domain</groupId>
+                <artifactId>mycloud-tmp1-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.allencai.mycloud.domain</groupId>
+                <artifactId>mycloud-tmp2-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.allencai.mycloud.domain</groupId>
+                <artifactId>mycloud-tmp3-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- ################################# domain api end ############################################# -->
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -93,7 +168,7 @@
                 <plugin>
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker.maven.version}</version>
+                    <version>${docker-maven.version}</version>
                     <configuration>
                         <dockerHost>${docker.host}</dockerHost>
                         <imageName>${project.artifactId}:${project.version}</imageName>

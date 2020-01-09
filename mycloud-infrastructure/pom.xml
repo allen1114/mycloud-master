@@ -18,7 +18,23 @@
         <module>mycloud-discovery</module>
         <module>mycloud-gateway</module>
         <module>mycloud-monitor</module>
+        <module>mycloud-zipkin</module>
+        <module>mycloud-seata</module>
     </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>

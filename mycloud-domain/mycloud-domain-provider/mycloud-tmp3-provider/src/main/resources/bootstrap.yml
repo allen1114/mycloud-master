@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  cloud:
+    config:
+      discovery:
+        service-id: mycloud-discovery
+        enabled: true
+      username: root
+      password: root
+      fail-fast: true
+    alibaba:
+      seata:
+        tx-service-group: mycloud-tx-group
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+

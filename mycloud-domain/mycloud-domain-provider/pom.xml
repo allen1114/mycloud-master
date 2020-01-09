@@ -12,7 +12,9 @@
     <artifactId>mycloud-domain-provider</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>mycloud-tmp1-provider</module>
         <module>mycloud-tmp2-provider</module>
+        <module>mycloud-tmp3-provider</module>
     </modules>
 
     <dependencies>
@@ -53,6 +55,41 @@
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.allencai.mycloud.domain</groupId>
+            <artifactId>mycloud-tmp1-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.allencai.mycloud.domain</groupId>
+            <artifactId>mycloud-tmp2-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.allencai.mycloud.domain</groupId>
+            <artifactId>mycloud-tmp3-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>
