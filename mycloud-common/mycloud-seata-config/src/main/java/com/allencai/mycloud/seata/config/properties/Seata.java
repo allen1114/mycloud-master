@@ -1,4 +1,4 @@
-package com.allencai.mycloud.seata.starter.config;
+package com.allencai.mycloud.seata.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,7 +13,6 @@ import java.util.Map;
 @Data
 public class Seata {
 
-    private boolean providerEnable;
     private SeataServer server;
     private SeataClient client;
     private SeataRegistry registry;

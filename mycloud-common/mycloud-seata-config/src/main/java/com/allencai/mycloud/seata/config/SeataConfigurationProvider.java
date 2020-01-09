@@ -1,4 +1,4 @@
-package com.allencai.mycloud.seata.starter;
+package com.allencai.mycloud.seata.config;
 
 import io.seata.config.Configuration;
 import io.seata.config.ExtConfigurationProvider;

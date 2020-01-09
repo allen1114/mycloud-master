@@ -14,8 +14,12 @@
 
         <dependency>
             <groupId>com.allencai.mycloud.common</groupId>
-            <artifactId>mycloud-spring-boot-starter-seata</artifactId>
-            <version>${project.version}</version>
+            <artifactId>mycloud-seata-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-server</artifactId>
         </dependency>
 
         <dependency>

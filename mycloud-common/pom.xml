@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mycloud-spring-boot-starter-seata</module>
+        <module>mycloud-seata-config</module>
     </modules>
 
 </project>
