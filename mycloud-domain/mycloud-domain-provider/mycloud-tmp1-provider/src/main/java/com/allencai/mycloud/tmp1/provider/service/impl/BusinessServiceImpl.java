@@ -19,7 +19,7 @@ public class BusinessServiceImpl implements BusinessService {
     @Resource
     private Tmp2BusinessApi tmp2BusinessApi;
 
-    @GlobalTransactional
+    @GlobalTransactional(rollbackFor = Throwable.class)
     @Override
     public Long saveStep1AndCallStep2(String code) {
         Step1 step1 = new Step1();

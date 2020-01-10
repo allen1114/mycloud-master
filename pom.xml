@@ -35,7 +35,7 @@
         <druid.version>1.1.21</druid.version>
         <mybatis-plus.version>3.0.4</mybatis-plus.version>
         <seata.version>1.0.0</seata.version>
-        <spring-cloud-alibaba.version>2.0.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
     </properties>
 
     <dependencyManagement>
@@ -125,6 +125,12 @@
 
             <dependency>
                 <groupId>io.seata</groupId>
+                <artifactId>seata-discovery-all</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
                 <artifactId>seata-spring-boot-starter</artifactId>
                 <version>${seata.version}</version>
             </dependency>
@@ -134,6 +140,12 @@
             <dependency>
                 <groupId>com.allencai.mycloud.common</groupId>
                 <artifactId>mycloud-seata-config</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.allencai.mycloud.common</groupId>
+                <artifactId>mycloud-seata-initiator</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- ################################# domain api start ############################################# -->

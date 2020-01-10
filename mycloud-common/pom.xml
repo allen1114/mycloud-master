@@ -12,7 +12,7 @@
     <artifactId>mycloud-common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mycloud-spring-boot-starter-seata</module>
+        <module>mycloud-seata-initiator</module>
         <module>mycloud-seata-config</module>
     </modules>
 

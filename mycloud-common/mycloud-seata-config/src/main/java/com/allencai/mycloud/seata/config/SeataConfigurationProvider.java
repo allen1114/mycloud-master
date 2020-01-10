@@ -7,8 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 import java.util.Map;
 
 @Slf4j
@@ -27,8 +26,11 @@ public class SeataConfigurationProvider implements ExtConfigurationProvider {
         return (Configuration) Enhancer.create(configuration.getClass(), (MethodInterceptor) (proxy, method, args, methodProxy) -> {
             if (method.getName().equals(INTERCEPT_METHOD) && args.length > 0 && args[0] instanceof String) {
                 Object result = getConfig(config, (String) args[0]);
+                if ("registry.type".equals(args[0])) {
+                    log.info("get registry.type in SeataConfigurationProvider");
+                }
                 if (null != result) {
-                    log.info("get config in ExtConfigurationProvider {} {}", args[0], result);
+                    log.info("get config in SeataConfigurationProvider {} {}", args[0], result);
                     if (method.getReturnType().equals(String.class)) {
                         return String.valueOf(result);
                     } else if (method.getReturnType().isAssignableFrom(result.getClass())) {
@@ -36,7 +38,9 @@ public class SeataConfigurationProvider implements ExtConfigurationProvider {
                     }
                 }
             }
-            return method.invoke(configuration, args);
+            Object result = method.invoke(configuration, args);
+            log.info("get config in Configuration {} {}", args[0], result);
+            return result;
         });
     }
 
@@ -47,7 +51,7 @@ public class SeataConfigurationProvider implements ExtConfigurationProvider {
         }
         Object result = getCamelField(obj, id);
         if (result == null && obj instanceof Map) {
-            result = getCamelField(obj, id);
+            result = ((Map) obj).get(id);
         }
         if (result != null) {
             return result;
@@ -56,12 +60,11 @@ public class SeataConfigurationProvider implements ExtConfigurationProvider {
         String prefix = id;
         while (StringUtils.contains(prefix, ".")) {
             prefix = StringUtils.substringBeforeLast(prefix, ".");
-            Object subProperties = getCamelField(obj, prefix);
 
+            Object subProperties = getCamelField(obj, prefix);
             if (subProperties == null && obj instanceof Map) {
                 subProperties = ((Map) obj).get(prefix);
             }
-
             if (subProperties != null) {
                 return getConfig(subProperties, StringUtils.substringAfter(id, prefix + "."));
             }
@@ -95,15 +98,16 @@ public class SeataConfigurationProvider implements ExtConfigurationProvider {
         if (o == null || StringUtils.isBlank(name)) {
             return null;
         }
-        Method method;
+        Field field;
         try {
-            method = o.getClass().getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
-        } catch (NoSuchMethodException e) {
+            field = o.getClass().getDeclaredField(name);
+        } catch (NoSuchFieldException e) {
             return null;
         }
+        field.setAccessible(true);
         try {
-            return method.invoke(o);
-        } catch (IllegalAccessException | InvocationTargetException e) {
+            return field.get(o);
+        } catch (IllegalAccessException e) {
             return null;
         }
     }
